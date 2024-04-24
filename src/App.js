@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Button } from "@fluentui/react-components";
+import "./App.css";
+import logo from "./assets/logo.svg";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      {/* header */}
+      <header className="header">
+        <div className="nav">
+          <div className="nav-section">
+            <img src={logo} className="logo" alt="logo" />
+            <p>Debt Snowball Calculator</p>
+          </div>
+        </div>
       </header>
+
+      {/* main content */}
+      <main className="main">
+        <div className="grid">
+          <div className="column">
+            <Button appearance="primary">Get started</Button>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
