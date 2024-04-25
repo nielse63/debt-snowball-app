@@ -1,0 +1,4 @@
+.action-cell {
+  max-width: calc(32px + 2rem);
+  width: calc(32px + 2rem);
+}

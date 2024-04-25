@@ -1,15 +1,21 @@
-import { FluentProvider, webLightTheme } from "@fluentui/react-components";
+import { FluentProvider } from "@fluentui/react-components";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "tailwindcss/dist/base.css";
+import "tailwindcss/dist/components.css";
+import "tailwindcss/dist/utilities.css";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import theme from "./theme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <FluentProvider theme={webLightTheme}>
-    <App />
-  </FluentProvider>
+  <React.StrictMode>
+    <FluentProvider theme={theme}>
+      <App />
+    </FluentProvider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,0 +1,7 @@
+.chart {
+  padding-right: 2rem;
+  border-right: 1px solid #e3e6ee;
+  height: 100%;
+  min-height: 250px;
+  max-height: 400px;
+}

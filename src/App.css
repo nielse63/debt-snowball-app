@@ -1,36 +1,5 @@
-.App {
-  font-size: calc(10px + 2vmin);
-}
-
-.header {
-  background-color: rgb(31 41 55);
-  color: white;
-  width: 100%;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  height: 4rem;
-  display: flex;
-  align-items: center;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-section {
-  display: flex;
-  align-items: center;
-}
-
-.nav-section > * + * {
-  margin-left: 1rem;
-}
-
-.logo {
-  height: 3.5rem;
-  width: 3.5rem;
+.app {
+  font-size: 1rem;
 }
 
 .main {
@@ -41,8 +10,32 @@
 
 .grid {
   /* grid-template-columns: repeat(4, minmax(0, 1fr)); */
-  grid-template-columns: 1fr 3fr;
+  /* grid-template-columns: 3fr 1fr; */
   row-gap: 2rem;
   column-gap: 2rem;
   display: grid;
+  /* grid: auto-flow dense / 3fr 1fr 4fr; */
+  grid-template:
+    "c c c b" auto
+    "a a a d" auto
+    "a a a d" auto / 1fr 1fr 1fr 1fr;
+  grid-auto-rows: minmax(min-content, 2fr);
+  /* grid-auto-flow: row; */
 }
+
+.col-a {
+  grid-area: a;
+}
+
+.col-b {
+  grid-area: b;
+}
+
+.col-c {
+  grid-area: c;
+}
+
+/* .column + .column {
+  padding-right: 2rem;
+  border-right: 1px solid #e3e6ee;
+} */
