@@ -7,13 +7,18 @@ import {
   // CardPreview,
   Divider,
   InfoLabel,
-  Link,
   Tag,
   makeStyles,
   shorthands,
   tokens,
 } from "@fluentui/react-components";
 import { ArrowReplyRegular } from "@fluentui/react-icons";
+import { format } from "date-fns";
+import snowball from "node-debt-snowball";
+import { useContext } from "react";
+import formatCurrency from "../../helpers/formatCurrency";
+import parseAccounts from "../../helpers/parseAccounts";
+import { AccountsContext } from "../../state/AccountsContext";
 
 import "./styles.css";
 
@@ -21,7 +26,6 @@ const useStyles = makeStyles({
   card: {
     ...shorthands.margin("auto"),
     width: "100%",
-    // maxWidth: "100%",
   },
   tag: {
     "border-color": tokens.colorPaletteGreenBorder1,
@@ -30,8 +34,29 @@ const useStyles = makeStyles({
   },
 });
 
+export const getTotalValues = (results: ResultsObject[], key: string) => {
+  return results.reduce((acc: number, result) => {
+    const monthlyInterest = result.accounts.reduce(
+      (sum: number, account: PaymentObject) => {
+        return sum + account[key];
+      },
+      0
+    );
+    return acc + monthlyInterest;
+  }, 0);
+};
+
 function ResultsCard() {
   const styles = useStyles();
+  const { results, dateEnd, accounts } = useContext(AccountsContext);
+  const totalInterest = getTotalValues(results, "accruedInterest");
+  const totalPayment = getTotalValues(results, "paymentAmount");
+  const parsedAccounts = parseAccounts(accounts);
+  const minPaymentResults = snowball(parsedAccounts, 0);
+  const interestSaved = formatCurrency(
+    minPaymentResults.totalInterestPaid - totalInterest
+  );
+  // console.log(minPaymentResults);
 
   return (
     <div className="accounts-card">
@@ -48,40 +73,38 @@ function ResultsCard() {
 
         <div className="card-body text-sm">
           <div className="flex items-center justify-between w-full my-3.5">
-            <b>Debt Free Date:</b>
+            <InfoLabel info="The date when you'll be debt free.">
+              <b>Debt Free Date:</b>
+            </InfoLabel>
             <Tag appearance="outline" className={styles.tag}>
-              N/A
+              {format(dateEnd, "MMM yyyy")}
             </Tag>
           </div>
 
           <div className="flex items-center justify-between w-full my-3.5">
-            <b>Total Amount Paid:</b>
+            <InfoLabel info="The total principal and interest paid.">
+              <b>Total Amount Paid:</b>
+            </InfoLabel>
             <Tag appearance="outline" className={styles.tag}>
-              N/A
+              {formatCurrency(totalPayment)}
             </Tag>
           </div>
 
           <div className="flex items-center justify-between w-full my-3.5">
-            <b>Interest Paid:</b>
+            <InfoLabel info="The amount of interest you'll pay following repayment strategy.">
+              <b>Interest Paid:</b>
+            </InfoLabel>
             <Tag appearance="outline" className={styles.tag}>
-              N/A
+              {formatCurrency(totalInterest)}
             </Tag>
           </div>
 
           <div className="flex items-center justify-between w-full my-3.5">
-            <InfoLabel
-              info={
-                <>
-                  This is example information for an InfoLabel.{" "}
-                  <Link href="https://react.fluentui.dev">Learn more</Link>
-                </>
-              }
-            >
+            <InfoLabel info="The amount saved by paying more than the minimum payment each month.">
               <b>Interest Saved:</b>
             </InfoLabel>
-
             <Tag appearance="outline" className={styles.tag}>
-              N/A
+              {interestSaved}
             </Tag>
           </div>
         </div>

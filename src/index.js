@@ -1,5 +1,4 @@
 import { FluentProvider } from "@fluentui/react-components";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "tailwindcss/dist/base.css";
 import "tailwindcss/dist/components.css";
@@ -11,11 +10,9 @@ import theme from "./theme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <FluentProvider theme={theme}>
-      <App />
-    </FluentProvider>
-  </React.StrictMode>
+  <FluentProvider theme={theme}>
+    <App />
+  </FluentProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

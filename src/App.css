@@ -9,18 +9,14 @@
 }
 
 .grid {
-  /* grid-template-columns: repeat(4, minmax(0, 1fr)); */
-  /* grid-template-columns: 3fr 1fr; */
   row-gap: 2rem;
   column-gap: 2rem;
   display: grid;
-  /* grid: auto-flow dense / 3fr 1fr 4fr; */
   grid-template:
     "c c c b" auto
-    "a a a d" auto
-    "a a a d" auto / 1fr 1fr 1fr 1fr;
+    "a a a b" auto
+    "a a a b" auto / 1fr 1fr 1fr 1fr;
   grid-auto-rows: minmax(min-content, 2fr);
-  /* grid-auto-flow: row; */
 }
 
 .col-a {
@@ -34,8 +30,3 @@
 .col-c {
   grid-area: c;
 }
-
-/* .column + .column {
-  padding-right: 2rem;
-  border-right: 1px solid #e3e6ee;
-} */

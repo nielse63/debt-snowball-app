@@ -3,7 +3,7 @@ import AccountsTable from "./components/AccountsTable";
 import Chart from "./components/Chart";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import ResultsCard from "./components/ResultsCard";
+import { AccountsProvider } from "./state/AccountsContext";
 
 function App() {
   return (
@@ -14,18 +14,17 @@ function App() {
       {/* main content */}
       <main className="main">
         <div className="grid">
-          <div className="column col-a">
-            <Chart />
-          </div>
-          <div className="column col-b">
-            <Sidebar />
-          </div>
-          <div className="column col-c">
-            <AccountsTable />
-          </div>
-          <div className="column col-d">
-            <ResultsCard />
-          </div>
+          <AccountsProvider>
+            <div className="column col-a">
+              <Chart />
+            </div>
+            <div className="column col-b">
+              <Sidebar />
+            </div>
+            <div className="column col-c">
+              <AccountsTable />
+            </div>
+          </AccountsProvider>
           {/* <div className="row">
             <div className="column">
               <Chart />
