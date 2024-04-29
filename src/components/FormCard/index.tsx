@@ -36,7 +36,7 @@ function FormCard() {
   const { additionalPayment, accounts } = useContext(AccountsContext);
   const [hasError, setHasError] = useState(false);
   const minPaymentSum = accounts.reduce((acc, account) => {
-    return acc + account.minPayment.value;
+    return acc + account.minPayment;
   }, 0);
   const fieldValidationState = hasError ? "error" : "none";
 

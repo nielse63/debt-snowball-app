@@ -1,16 +1,23 @@
+import uuid from "../helpers/uuid";
+
 const accounts = [
   {
-    name: { value: "Visa" },
-    balance: { value: 3000 },
-    interest: { value: 14.99 },
-    minPayment: { value: 100 },
+    name: "Visa",
+    balance: 3000,
+    interest: 14.99,
+    minPayment: 100,
   },
   {
-    name: { value: "Student Loan" },
-    balance: { value: 5000 },
-    interest: { value: 4.75 },
-    minPayment: { value: 150 },
+    name: "Student Loan",
+    balance: 5000,
+    interest: 4.75,
+    minPayment: 150,
   },
-];
+].map((account) => {
+  return {
+    ...account,
+    key: uuid(),
+  };
+});
 
 export default accounts;

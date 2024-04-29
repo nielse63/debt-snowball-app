@@ -36,8 +36,8 @@ function RepaymentPlan(props: RepaymentPlanProps) {
   ];
   props.accounts.forEach((account, i) => {
     columns.splice(i + 1, 0, {
-      columnKey: account.name.value,
-      label: account.name.value,
+      columnKey: account.name,
+      label: account.name,
     });
   });
   const date = new Date();

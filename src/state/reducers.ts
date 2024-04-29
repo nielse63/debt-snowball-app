@@ -8,6 +8,12 @@ const reducers = (state: State, action: Action) => {
   const { accounts, additionalPayment } = state;
 
   switch (action.type) {
+    case "ON_LOAD":
+      console.log("ON_LOAD", state);
+      return {
+        ...state,
+        // additionalPayment: parseFloat(action.payload),
+      };
     case "SET_MIN_PAYMENT":
       return {
         ...state,
@@ -40,9 +46,9 @@ const reducers = (state: State, action: Action) => {
 
       // recaulcate payment plan
       if (
-        accounts[index].balance.value &&
-        accounts[index].interest.value &&
-        accounts[index].minPayment.value
+        accounts[index].balance &&
+        accounts[index].interest &&
+        accounts[index].minPayment
       ) {
         const parsedAccounts = parseAccounts(accounts);
         const snowballResults = snowball(parsedAccounts, additionalPayment);

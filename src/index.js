@@ -1,4 +1,4 @@
-import { FluentProvider } from "@fluentui/react-components";
+// import { FluentProvider } from "@fluentui/react-components";
 import ReactDOM from "react-dom/client";
 import "tailwindcss/dist/base.css";
 import "tailwindcss/dist/components.css";
@@ -6,13 +6,25 @@ import "tailwindcss/dist/utilities.css";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import theme from "./theme";
+// import theme from "./theme";
+import { ConfigProvider } from "antd";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <FluentProvider theme={theme}>
+  <ConfigProvider
+    theme={{
+      token: {
+        Layout: {
+          headerBg: "#1f2937",
+          headerPadding: "0 2rem",
+          fontSize: "1rem",
+          fontSizeBase: "16px",
+        },
+      },
+    }}
+  >
     <App />
-  </FluentProvider>
+  </ConfigProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

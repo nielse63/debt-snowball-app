@@ -9,10 +9,10 @@ interface Action {
 }
 
 interface AccountItem {
-  name: { value: string };
-  balance: { value: number };
-  interest: { value: number };
-  minPayment: { value: number };
+  name: string;
+  balance: number;
+  interest: number;
+  minPayment: number;
 }
 
 interface CleanAccountItem {

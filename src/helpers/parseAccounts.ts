@@ -3,7 +3,7 @@ import isNumeric from "./isNumeric";
 const parseItem = (item: AccountItem) => {
   return Object.entries(item).reduce(
     (acc, [key, value]) => {
-      if (!isNumeric(value.value)) {
+      if (!isNumeric(value)) {
         return {
           ...acc,
           [key]: value,
@@ -11,14 +11,14 @@ const parseItem = (item: AccountItem) => {
       }
       return {
         ...acc,
-        [key]: { value: parseFloat(value.value) },
+        [key]: parseFloat(value),
       };
     },
     {
-      name: { value: "" },
-      balance: { value: 0 },
-      interest: { value: 0 },
-      minPayment: { value: 0 },
+      name: "",
+      balance: 0,
+      interest: 0,
+      minPayment: 0,
     }
   );
 };
@@ -26,17 +26,16 @@ const parseItem = (item: AccountItem) => {
 const parseAccounts = (accounts: AccountItem[]) => {
   return accounts
     .filter((item: AccountItem) => {
-      return Object.values(item).every((item) => {
-        return "value" in item && item.value !== "" && item.value !== 0;
-      });
+      return Object.values(item).every(Boolean);
     })
     .map(parseItem)
     .map((item) => {
+      console.log({ item });
       return {
-        name: item.name.value,
-        interest: parseFloat(item.interest.value.toFixed(2)),
-        balance: parseFloat(item.balance.value.toFixed(2)),
-        minPayment: parseFloat(item.minPayment.value.toFixed(2)),
+        name: item.name,
+        interest: parseFloat(item.interest.toFixed(2)),
+        balance: parseFloat(item.balance.toFixed(2)),
+        minPayment: parseFloat(item.minPayment.toFixed(2)),
       };
     });
 };
