@@ -79,7 +79,7 @@ function RepaymentPlan(props: RepaymentPlanProps) {
         </Button>
       </DialogTrigger>
 
-      <DialogSurface className="dialog">
+      <DialogSurface style={{ maxWidth: "80vw" }}>
         <DialogBody>
           <DialogTitle>Repayment Plan</DialogTitle>
           <DialogContent>

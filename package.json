@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "craco start",
+    "prebuild": "rm -rf docs build",
     "build": "craco build",
+    "postbuild": "mv build docs",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
