@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$branch" == "main" ]; then
+    npm run build
+    git add docs
+    git commit --amend --no-edit
+fi
