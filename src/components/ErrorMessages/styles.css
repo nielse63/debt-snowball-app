@@ -1,3 +1,7 @@
 .error-messages {
   margin-bottom: 2rem;
 }
+
+.error-messages > * + * {
+  margin-top: 1rem;
+}

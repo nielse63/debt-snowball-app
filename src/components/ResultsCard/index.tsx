@@ -10,10 +10,9 @@ import {
   tokens,
 } from "@fluentui/react-components";
 import { format } from "date-fns";
-import snowball from "node-debt-snowball";
 import { useContext } from "react";
 import formatCurrency from "../../helpers/formatCurrency";
-import parseAccounts from "../../helpers/parseAccounts";
+import getTotalValues from "../../helpers/getTotalValues";
 import { AccountsContext } from "../../state/AccountsContext";
 import RepaymentPlan from "../RepaymentPlan";
 
@@ -31,28 +30,12 @@ const useStyles = makeStyles({
   },
 });
 
-export const getTotalValues = (results: ResultsObject[], key: string) => {
-  return results.reduce((acc: number, result) => {
-    const monthlyInterest = result.accounts.reduce(
-      (sum: number, account: PaymentObject) => {
-        return sum + account[key];
-      },
-      0
-    );
-    return acc + monthlyInterest;
-  }, 0);
-};
-
 function ResultsCard() {
   const styles = useStyles();
-  const { results, dateEnd, accounts } = useContext(AccountsContext);
+  const { results, dateEnd, accounts, interestSaved } =
+    useContext(AccountsContext);
   const totalInterest = getTotalValues(results, "accruedInterest");
   const totalPayment = getTotalValues(results, "paymentAmount");
-  const parsedAccounts = parseAccounts(accounts);
-  const minPaymentResults = snowball(parsedAccounts, 0);
-  const interestSaved = formatCurrency(
-    minPaymentResults.totalInterestPaid - totalInterest
-  );
 
   return (
     <div className="accounts-card">
@@ -100,7 +83,7 @@ function ResultsCard() {
               <b>Interest Saved:</b>
             </InfoLabel>
             <Tag appearance="outline" className={styles.tag}>
-              {interestSaved}
+              {formatCurrency(interestSaved)}
             </Tag>
           </div>
         </div>

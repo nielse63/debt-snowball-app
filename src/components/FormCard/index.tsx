@@ -2,13 +2,15 @@ import {
   Card,
   CardHeader,
   Divider,
+  Field,
   InfoLabel,
   Input,
+  Tag,
   makeStyles,
   shorthands,
   tokens,
 } from "@fluentui/react-components";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
   AccountsContext,
   AccountsContextDispatcher,
@@ -31,7 +33,12 @@ const useStyles = makeStyles({
 function FormCard() {
   const styles = useStyles();
   const dispatch = useContext(AccountsContextDispatcher);
-  const { additionalPayment } = useContext(AccountsContext);
+  const { additionalPayment, accounts } = useContext(AccountsContext);
+  const [hasError, setHasError] = useState(false);
+  const minPaymentSum = accounts.reduce((acc, account) => {
+    return acc + account.minPayment.value;
+  }, 0);
+  const fieldValidationState = hasError ? "error" : "none";
 
   return (
     <div className="form-card">
@@ -39,8 +46,8 @@ function FormCard() {
         <CardHeader
           header={
             <div className="flex items-center justify-between w-full">
-              <InfoLabel info="The additional amount you can apply toward each monthly payment.">
-                <b>Additional Monthly Payment:</b>
+              <InfoLabel info="An amount you can pay in addition to the minimum payments.">
+                <b>Additional Payment:</b>
               </InfoLabel>
             </div>
           }
@@ -49,21 +56,30 @@ function FormCard() {
         <Divider />
 
         <div className="card-body text-sm">
-          <Input
-            className="w-full"
-            contentBefore="$"
-            placeholder="Optional"
-            type="number"
-            min="0"
-            defaultValue={`${additionalPayment}`}
-            onBlur={(event) => {
-              if (`${additionalPayment}` === `${event.target.value}`) return;
-              dispatch({
-                type: "SET_MIN_PAYMENT",
-                payload: event.target.value,
-              });
-            }}
-          />
+          <div className="flex align-center justify-between mb-2 leading-8">
+            <p className="mb-0">Total Minimum Payment:</p>
+            <Tag className={styles.tag} appearance="filled">
+              {`$${minPaymentSum}`}
+            </Tag>
+          </div>
+          <Field validationState={fieldValidationState}>
+            <Input
+              className="w-full"
+              contentBefore="$"
+              type="number"
+              min="0"
+              defaultValue={`${additionalPayment}`}
+              onBlur={(event) => {
+                const value = parseFloat(event.target.value);
+                if (additionalPayment === value) return;
+                if (hasError) setHasError(false);
+                dispatch({
+                  type: "SET_MIN_PAYMENT",
+                  payload: value - minPaymentSum,
+                });
+              }}
+            />
+          </Field>
         </div>
       </Card>
     </div>

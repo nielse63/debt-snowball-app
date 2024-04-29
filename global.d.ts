@@ -47,10 +47,18 @@ interface ResultsObject {
   accounts: PaymentObject[];
 }
 
+interface ErrorObject {
+  message: string;
+  source: string;
+  id: string;
+}
+
 interface State {
   additionalPayment: number;
   accounts: AccountItem[];
   results: ResultsObject[];
   dateEnd: Date;
-  errors: string[];
+  errors: ErrorObject[];
+  totalInterest: number;
+  interestSaved: number;
 }

@@ -12,7 +12,7 @@ function ErrorMessages() {
   return (
     <div className="error-messages">
       {errors.map((error, index) => (
-        <ErrorMessage key={`error-message-${index}`} message={error} />
+        <ErrorMessage key={`error-message-${index}`} {...error} />
       ))}
     </div>
   );

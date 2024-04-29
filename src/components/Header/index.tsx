@@ -10,8 +10,10 @@ function Header() {
     <header className="header bg-gray-800 text-white">
       <div className="nav">
         <div className="nav-section">
-          <img src={logo} className="logo" alt="logo" />
-          <p>Debt Snowball Calculator</p>
+          <Link href="/" className="logo-link">
+            <img src={logo} className="logo" alt="logo" />
+            <p>Debt Snowball Calculator</p>
+          </Link>
         </div>
         <div className="nav-section">
           <Link
@@ -22,7 +24,7 @@ function Header() {
             <img
               src={investopedia}
               alt="Learn more on Investopedia"
-              height="2.5rem"
+              className="header-img"
             />
           </Link>
           <Link
@@ -30,7 +32,7 @@ function Header() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={github} alt="View on GitHub" height="2.5rem" />
+            <img src={github} alt="View on GitHub" className="header-img" />
           </Link>
         </div>
       </div>

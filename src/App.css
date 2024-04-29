@@ -13,7 +13,7 @@
   column-gap: 2rem;
   display: grid;
   grid-template:
-    "c c c b" auto
+    "c c c d" auto
     "a a a b" auto
     "a a a b" auto / 1fr 1fr 1fr 1fr;
   grid-auto-rows: minmax(min-content, 2fr);
@@ -29,4 +29,8 @@
 
 .col-c {
   grid-area: c;
+}
+
+.col-d {
+  grid-area: d;
 }

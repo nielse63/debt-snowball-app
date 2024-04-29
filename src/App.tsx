@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { AccountsProvider } from "./state/AccountsContext";
 import ErrorMessages from "./components/ErrorMessages";
+import FormCard from "./components/FormCard";
 
 function App() {
   return (
@@ -18,14 +19,17 @@ function App() {
           <ErrorMessages />
 
           <div className="grid">
+            <div className="column col-c">
+              <AccountsTable />
+            </div>
+            <div className="column col-d">
+              <FormCard />
+            </div>
             <div className="column col-a">
               <Chart />
             </div>
             <div className="column col-b">
               <Sidebar />
-            </div>
-            <div className="column col-c">
-              <AccountsTable />
             </div>
           </div>
         </main>
