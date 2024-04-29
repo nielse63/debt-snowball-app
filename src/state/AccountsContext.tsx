@@ -1,8 +1,6 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, Reducer } from "react";
 import reducers from "./reducers";
 import initialState from "./state";
-
-import { Reducer } from "react";
 
 export const AccountsContext = createContext({ ...initialState });
 export const AccountsContextDispatcher = createContext((_: any) => {});

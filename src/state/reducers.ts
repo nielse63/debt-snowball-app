@@ -1,10 +1,10 @@
-import { DEFAULT_ACCOUNT } from "../helpers/constants";
+import { addMonths } from "date-fns";
 import snowball from "node-debt-snowball";
+import { DEFAULT_ACCOUNT } from "../helpers/constants";
 import parseAccounts from "../helpers/parseAccounts";
 
 const reducers = (state: State, action: Action) => {
   const { accounts, additionalPayment } = state;
-  // console.log({ action });
 
   switch (action.type) {
     case "SET_MIN_PAYMENT":
@@ -45,9 +45,15 @@ const reducers = (state: State, action: Action) => {
       ) {
         const parsedAccounts = parseAccounts(accounts);
         output.results = snowball(parsedAccounts, additionalPayment).payments;
+        output.dateEnd = addMonths(new Date(), output.results.length - 1);
       }
 
       return { ...output };
+    case "ADD_ERROR":
+      return {
+        ...state,
+        errors: [...state.errors, action.payload.message],
+      };
   }
 
   return { ...state };

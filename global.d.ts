@@ -52,4 +52,5 @@ interface State {
   accounts: AccountItem[];
   results: ResultsObject[];
   dateEnd: Date;
+  errors: string[];
 }

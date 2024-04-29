@@ -1,0 +1,9 @@
+.dialog {
+  max-width: 80vw;
+}
+
+.fui-TableCellLayout:empty::after {
+  content: "—";
+  color: #ccc;
+  margin-left: 1rem;
+}

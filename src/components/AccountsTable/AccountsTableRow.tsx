@@ -9,6 +9,7 @@ import { DeleteRegular } from "@fluentui/react-icons";
 import { useContext } from "react";
 import formatCurrency from "../../helpers/formatCurrency";
 import { AccountsContextDispatcher } from "../../state/AccountsContext";
+import columns from "./columns";
 
 import "./styles.css";
 
@@ -37,6 +38,16 @@ function AccountsTableRow(props: AccountsTableRowProps) {
     });
   };
 
+  const handleZeroValueError = (key: string) => {
+    const label = columns.find((column) => column.columnKey === key)?.label;
+    dispatch({
+      type: "ADD_ERROR",
+      payload: {
+        message: `Please enter a value greater than 0 for "${label}"`,
+      },
+    });
+  };
+
   return (
     <TableRow key={`accounts-row-${index}`}>
       {Object.entries(account).map(([key, item]) => {
@@ -57,19 +68,19 @@ function AccountsTableRow(props: AccountsTableRowProps) {
                 {...inputProps}
                 onBlur={(event) => {
                   if (`${value}` === `${event.target.value}`) return;
-                  // console.log({
-                  //   oldValue: value,
-                  //   replaced: event.target.value.replace(/,|[a-zA-Z]|\$/g, ""),
-                  //   newValue: parseFloat(
-                  //     event.target.value.replace(/,|[a-zA-Z]|\$/g, "")
-                  //   ),
-                  // });
                   const newValue =
                     key === "name"
                       ? event.target.value
                       : parseFloat(
                           event.target.value.replace(/,|[a-zA-Z]|\$/g, "")
                         );
+                  if (
+                    parseFloat(`${newValue}`) <= 0 &&
+                    parseFloat(`${value}`) > 0
+                  ) {
+                    handleZeroValueError(key);
+                    return;
+                  }
                   editAccount(key, newValue);
                 }}
               />

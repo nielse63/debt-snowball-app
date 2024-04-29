@@ -23,7 +23,6 @@ function Chart() {
       valueFormatter: (value: number | null) => formatCurrency(value as number),
     };
   });
-  console.log({ chartData, series });
 
   return (
     <section className="chart">
@@ -39,7 +38,7 @@ function Chart() {
         yAxis={[
           {
             id: "balance",
-            scaleType: "linear",
+            // scaleType: "linear",
             valueFormatter: (value) =>
               formatCurrency(value as number, {
                 maximumFractionDigits: 0,
@@ -51,7 +50,7 @@ function Chart() {
         margin={{
           top: 20,
           bottom: 75,
-          left: 50,
+          left: 75,
           right: 50,
         }}
         slotProps={{

@@ -4,6 +4,7 @@ import Chart from "./components/Chart";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { AccountsProvider } from "./state/AccountsContext";
+import ErrorMessages from "./components/ErrorMessages";
 
 function App() {
   return (
@@ -11,10 +12,12 @@ function App() {
       {/* header */}
       <Header />
 
-      {/* main content */}
-      <main className="main">
-        <div className="grid">
-          <AccountsProvider>
+      <AccountsProvider>
+        {/* main content */}
+        <main className="main">
+          <ErrorMessages />
+
+          <div className="grid">
             <div className="column col-a">
               <Chart />
             </div>
@@ -24,21 +27,9 @@ function App() {
             <div className="column col-c">
               <AccountsTable />
             </div>
-          </AccountsProvider>
-          {/* <div className="row">
-            <div className="column">
-              <Chart />
-            </div>
-
-            <div className="column">
-              <Sidebar />
-            </div>
           </div>
-          <div className="row">
-            <AccountsTable />
-          </div> */}
-        </div>
-      </main>
+        </main>
+      </AccountsProvider>
     </div>
   );
 }

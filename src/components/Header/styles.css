@@ -3,14 +3,13 @@
   padding-left: 2rem;
   padding-right: 2rem;
   height: 4rem;
-  display: flex;
-  align-items: center;
 }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 100%;
 }
 
 .nav-section {
@@ -19,10 +18,14 @@
 }
 
 .nav-section > * + * {
-  margin-left: 0.5em;
+  margin-left: 1em !important;
 }
 
 .logo {
   height: 2.5rem;
   width: 2.5rem;
+}
+
+.header img {
+  max-height: 2.5rem;
 }

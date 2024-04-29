@@ -26,7 +26,7 @@ const parseChartData = (data: any[]) => {
         }
       });
     }
-    xAxisData.push(addMonths(dateNow, index + 1));
+    xAxisData.push(addMonths(dateNow, index));
 
     // add item to series
     item.accounts.forEach((account: AccountObject) => {

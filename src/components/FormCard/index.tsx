@@ -50,6 +50,7 @@ function FormCard() {
 
         <div className="card-body text-sm">
           <Input
+            className="w-full"
             contentBefore="$"
             placeholder="Optional"
             type="number"

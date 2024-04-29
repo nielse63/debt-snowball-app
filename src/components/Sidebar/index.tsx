@@ -1,5 +1,4 @@
-import { Button } from "@fluentui/react-components";
-import { CalculatorRegular } from "@fluentui/react-icons";
+import { Divider } from "@fluentui/react-components";
 import FormCard from "../FormCard";
 import ResultsCard from "../ResultsCard";
 
@@ -10,22 +9,7 @@ function Sidebar() {
     <aside className="sidebar">
       <FormCard />
 
-      {/* <div>
-        <p>
-          <Button icon={<AddRegular />} className="w-full">
-            Add Account
-          </Button>
-        </p>
-        <p>
-          <Button
-            appearance="primary"
-            icon={<CalculatorRegular />}
-            className="w-full"
-          >
-            Calculate
-          </Button>
-        </p>
-      </div> */}
+      <Divider />
 
       <ResultsCard />
     </aside>

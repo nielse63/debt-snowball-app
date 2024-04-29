@@ -6,19 +6,14 @@ import { addMonths } from "date-fns";
 const additionalPayment = 100;
 const parsedAccounts = parseAccounts(accounts);
 const { payments: results } = snowball(parsedAccounts, additionalPayment);
-const dateEnd = addMonths(new Date(), results.length);
+const dateEnd = addMonths(new Date(), results.length - 1);
 
 const state: State = {
   additionalPayment,
   accounts,
   results,
   dateEnd,
-  //   results: {
-  //     date: null,
-  //     totalPaid: 0,
-  //     totalInterest: 0,
-  //     interestSaved: 0,
-  //   },
+  errors: [],
 };
 
 export default state;

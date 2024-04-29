@@ -1,10 +1,7 @@
 import {
-  Button,
-  // Caption1,
   Card,
   CardFooter,
   CardHeader,
-  // CardPreview,
   Divider,
   InfoLabel,
   Tag,
@@ -12,13 +9,13 @@ import {
   shorthands,
   tokens,
 } from "@fluentui/react-components";
-import { ArrowReplyRegular } from "@fluentui/react-icons";
 import { format } from "date-fns";
 import snowball from "node-debt-snowball";
 import { useContext } from "react";
 import formatCurrency from "../../helpers/formatCurrency";
 import parseAccounts from "../../helpers/parseAccounts";
 import { AccountsContext } from "../../state/AccountsContext";
+import RepaymentPlan from "../RepaymentPlan";
 
 import "./styles.css";
 
@@ -56,7 +53,6 @@ function ResultsCard() {
   const interestSaved = formatCurrency(
     minPaymentResults.totalInterestPaid - totalInterest
   );
-  // console.log(minPaymentResults);
 
   return (
     <div className="accounts-card">
@@ -108,13 +104,12 @@ function ResultsCard() {
             </Tag>
           </div>
         </div>
+
         <Divider />
 
         <CardFooter>
           <div className="flex items-center justify-between w-full">
-            <Button icon={<ArrowReplyRegular />} className="w-full">
-              See Payment Plan
-            </Button>
+            <RepaymentPlan data={results} accounts={accounts} />
           </div>
         </CardFooter>
       </Card>

@@ -13,14 +13,12 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fluentui/react-components": "^9.49.0",
-    "@fontsource/roboto": "^5.0.13",
     "@mui/material": "^5.15.15",
     "@mui/x-charts": "^7.3.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "date-fns": "^3.6.0",
-    "highcharts-react-official": "^3.2.1",
     "lodash": "^4.17.21",
     "node-debt-snowball": "^2.2.0",
     "react": "^18.2.0",
@@ -29,6 +27,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/jest": "^29.5.12",
     "@types/lodash": "^4.17.0",
     "@types/node": "^20.12.7",
