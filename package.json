@@ -4,9 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "prebuild": "rm -rf docs build",
     "build": "react-scripts build",
-    "postbuild": "mv build docs",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky || true"
@@ -34,6 +32,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "husky": "^9.0.11"
   },
   "eslintConfig": {
