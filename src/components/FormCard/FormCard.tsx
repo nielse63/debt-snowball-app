@@ -21,7 +21,7 @@ function FormCard() {
 
   return (
     <div className="form-card">
-      <Card title="Additional Payment:">
+      <Card title="Additional Payment">
         <div className="card-body text-sm">
           <Flex
             align="center"
@@ -29,7 +29,7 @@ function FormCard() {
             className="results-item mb-2"
           >
             <div>
-              <b>Min. Payment Total:</b>&nbsp;
+              <b>Min. Payment Total</b>&nbsp;
               <Tooltip title="The sum of all minimum payment amounts">
                 <InfoCircleOutlined />
               </Tooltip>
