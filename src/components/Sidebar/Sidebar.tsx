@@ -1,6 +1,7 @@
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { CalculatorOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { useContext } from "react";
+import { actionTypes } from "../../helpers/constants";
 import { AccountsContextDispatcher } from "../../state/AccountsContext";
 import FormCard from "../FormCard";
 
@@ -19,6 +20,14 @@ function Sidebar() {
         type="primary"
       >
         Add Account
+      </Button>
+      <Button
+        onClick={() => dispatch({ type: actionTypes.CALCULATE })}
+        icon={<CalculatorOutlined />}
+        className="mt-4"
+        type="primary"
+      >
+        Calculate
       </Button>
     </aside>
   );

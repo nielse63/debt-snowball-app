@@ -1,9 +1,10 @@
-import type { BlurEvent, TextInputProps } from "./types";
+import catpialize from "lodash/capitalize";
 import { actionTypes } from "../../helpers/constants";
+import type { BlurEvent, InputProps } from "./types";
 
 export const onBlurHandler = (
   event: BlurEvent,
-  props: TextInputProps,
+  props: InputProps,
   setHasError: Function,
   dispatch: Function
 ) => {
@@ -15,7 +16,7 @@ export const onBlurHandler = (
     dispatch({
       type: actionTypes.ADD_ERROR,
       payload: {
-        message: `Account ${column} cannot be empty`,
+        message: `${catpialize(column)} cannot be empty`,
         id: errorId,
         source: "accountName",
       },

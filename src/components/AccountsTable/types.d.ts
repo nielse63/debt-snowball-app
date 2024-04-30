@@ -11,6 +11,10 @@ export interface NumberInputProps extends TextInputProps {
   options?: object;
 }
 
+export interface InputProps extends NumberInputProps {
+  defaultValue: string | number;
+}
+
 export interface DeleteButtonProps {
   title: string;
   id: string;

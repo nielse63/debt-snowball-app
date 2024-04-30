@@ -2,13 +2,15 @@ import { actionTypes } from "../helpers/constants";
 import accountAdded from "./reducers/accountAdded";
 import accountDeleted from "./reducers/accountDeleted";
 import accountEdited from "./reducers/accountEdited";
+import calculated from "./reducers/calculated";
 import errorAdded from "./reducers/errorAdded";
 import errorDismissed from "./reducers/errorDismissed";
 import minPaymentSet from "./reducers/minPaymentSet";
 
 const reducers = (state: State, action: Action) => {
-  console.log({ state, action });
   switch (action.type) {
+    case actionTypes.CALCULATE:
+      return calculated(state);
     case actionTypes.SET_MIN_PAYMENT:
       return minPaymentSet(state, action);
     case actionTypes.ADD_ACCOUNT:

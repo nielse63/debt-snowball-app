@@ -12,6 +12,7 @@ export const actionTypes = {
   EDIT_ACCOUNT: "EDIT_ACCOUNT",
   ADD_ERROR: "ADD_ERROR",
   DISMISS_ERROR: "DISMISS_ERROR",
+  CALCULATE: "CALCULATE",
 };
 
 export const errorIds = {
