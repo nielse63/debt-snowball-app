@@ -5,7 +5,7 @@ import formatCurrency from "../../helpers/formatCurrency";
 import getTotalValues from "../../helpers/getTotalValues";
 import { AccountsContext } from "../../state/AccountsContext";
 import RepaymentPlan from "../RepaymentPlan";
-import ResultsItem from "./ResultsItem";
+import ResultsItem from "../ResultsItem";
 
 import "./styles.css";
 

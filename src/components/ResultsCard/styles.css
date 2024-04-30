@@ -9,7 +9,3 @@
 .card-action-button:only-child {
   width: 100%;
 }
-
-.results-item + .results-item {
-  margin-top: 1rem;
-}

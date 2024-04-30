@@ -28,6 +28,8 @@ export const onBlurHandler = (
     type: actionTypes.DISMISS_ERROR,
     payload: { id: errorId },
   });
+  // @ts-ignore
+  if (`${value}` === `${record[column]}`) return;
   dispatch({
     type: actionTypes.EDIT_ACCOUNT,
     payload: {

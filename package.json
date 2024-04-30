@@ -21,6 +21,7 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "antd": "^5.16.5",
+    "classname": "^0.0.0",
     "date-fns": "^3.6.0",
     "highcharts": "^11.4.1",
     "highcharts-react-official": "^3.2.1",
@@ -42,7 +43,18 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-console": [
+        "error",
+        {
+          "allow": [
+            "warn",
+            "error"
+          ]
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [

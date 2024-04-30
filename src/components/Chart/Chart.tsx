@@ -6,6 +6,7 @@ import Highcharts, {
 import HighchartsReact from "highcharts-react-official";
 import { useContext, useRef } from "react";
 import formatCurrency from "../../helpers/formatCurrency";
+import uuid from "../../helpers/uuid";
 import { AccountsContext } from "../../state/AccountsContext";
 
 import "./styles.css";
@@ -14,6 +15,10 @@ type SeriesEntry = [number, number | null];
 
 type SeriesObject = {
   [key: string]: SeriesEntry[];
+};
+
+type IdsObject = {
+  [key: string]: string;
 };
 
 const addMonthsAndFormat = (months: number): number => {
@@ -26,23 +31,34 @@ const addMonthsAndFormat = (months: number): number => {
 const createSeriesArray = (results: ResultsObject[]): SeriesOptionsType[] => {
   const seriesObject: SeriesObject = {};
   const firstDate = addMonthsAndFormat(0);
+  const { accounts } = results[0];
+  const ids: IdsObject = accounts.reduce((acc, account) => {
+    return {
+      ...acc,
+      [uuid()]: account.name,
+    };
+  }, {});
   results.forEach((object, i) => {
     if (!i) {
-      object.accounts.forEach((account) => {
-        seriesObject[account.name] = [[firstDate, account.balanceStart]];
+      object.accounts.forEach((account, j) => {
+        const id = Object.keys(ids)[j];
+        seriesObject[id] = [[firstDate, account.balanceStart]];
       });
     }
     const date = addMonthsAndFormat(i + 1);
-    object.accounts.forEach((account) => {
-      seriesObject[account.name].push([date, account.balanceEnd]);
+    object.accounts.forEach((account, j) => {
+      const id = Object.keys(ids)[j];
+      seriesObject[id].push([date, account.balanceEnd]);
     });
   });
   const series: SeriesOptionsType[] = Object.entries(seriesObject).map(
     ([key, value]) => {
+      const name = ids[key];
       return {
-        name: key,
+        name,
         data: value,
         type: "spline",
+        id: key,
       };
     }
   );
@@ -97,6 +113,18 @@ const createChartOptions = (
       },
     },
     series,
+    colors: [
+      "#2caffe",
+      "#544fc5",
+      "#00e272",
+      "#fe6a35",
+      "#6b8abc",
+      "#d568fb",
+      "#2ee0ca",
+      "#fa4b42",
+      "#feb56a",
+      "#91e8e1",
+    ],
   };
   return options;
 };

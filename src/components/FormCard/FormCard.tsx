@@ -1,5 +1,4 @@
-import { InfoCircleOutlined } from "@ant-design/icons";
-import { Card, Flex, InputNumber, Tag, Tooltip } from "antd";
+import { Card, InputNumber } from "antd";
 import { useContext } from "react";
 import { actionTypes } from "../../helpers/constants";
 import formatCurrency from "../../helpers/formatCurrency";
@@ -7,6 +6,7 @@ import {
   AccountsContext,
   AccountsContextDispatcher,
 } from "../../state/AccountsContext";
+import ResultsItem from "../ResultsItem";
 
 import "./styles.css";
 
@@ -14,29 +14,23 @@ function FormCard() {
   const dispatch = useContext(AccountsContextDispatcher);
   const { accounts, additionalPayment } = useContext(AccountsContext);
 
-  const totalMinPayment = accounts.reduce((acc, account) => {
-    console.log({ acc, account });
-    return acc + account.minPayment;
-  }, 0);
+  const totalMinPayment = accounts.reduce(
+    (acc: number, account: AccountItem) => {
+      return acc + account.minPayment;
+    },
+    0
+  );
 
   return (
     <div className="form-card">
       <Card title="Additional Payment">
         <div className="card-body text-sm">
-          <Flex
-            align="center"
-            justify="space-between"
-            className="results-item mb-2"
-          >
-            <div>
-              <b>Min. Payment Total</b>&nbsp;
-              <Tooltip title="The sum of all minimum payment amounts">
-                <InfoCircleOutlined />
-              </Tooltip>
-            </div>
-            <Tag color="green">{formatCurrency(totalMinPayment)}</Tag>
-          </Flex>
-
+          <ResultsItem
+            title="Min. Payment Total"
+            value={formatCurrency(totalMinPayment)}
+            tooltip="The sum of all minimum payment amounts"
+            className="mb-4"
+          />
           <InputNumber
             className="w-full"
             addonBefore="$"
