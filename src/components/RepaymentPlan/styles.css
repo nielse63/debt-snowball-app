@@ -1,5 +1,4 @@
-.fui-TableCellLayout:empty::after {
-  content: "—";
-  color: #ccc;
-  margin-left: 1rem;
+.repayment-plan-modal {
+  max-width: 800px;
+  width: 80vw;
 }

@@ -1,11 +1,6 @@
-import {
-  Button,
-  MessageBar,
-  MessageBarActions,
-  MessageBarBody,
-} from "@fluentui/react-components";
-import { DismissRegular } from "@fluentui/react-icons";
+import { Alert } from "antd";
 import { useContext } from "react";
+import { actionTypes } from "../../helpers/constants";
 import { AccountsContextDispatcher } from "../../state/AccountsContext";
 
 interface ErrorMessageProps {
@@ -18,24 +13,19 @@ function ErrorMessage(props: ErrorMessageProps) {
   const dispatch = useContext(AccountsContextDispatcher);
   const dismissError = () => {
     dispatch({
-      type: "DISMISS_ERROR",
+      type: actionTypes.DISMISS_ERROR,
       payload: { id: props.id },
     });
   };
 
   return (
-    <MessageBar intent="error" politeness="assertive">
-      <MessageBarBody>
-        <b>{props.message}</b>
-      </MessageBarBody>
-      <MessageBarActions>
-        <Button
-          icon={<DismissRegular />}
-          appearance="subtle"
-          onClick={dismissError}
-        />
-      </MessageBarActions>
-    </MessageBar>
+    <Alert
+      message={props.message}
+      type="error"
+      closable
+      onClose={dismissError}
+      showIcon
+    />
   );
 }
 

@@ -1,6 +1,6 @@
 import { addMonths } from "date-fns";
-import kebabCase from "lodash/kebabCase";
 import { AccountObject } from "node-debt-snowball";
+import kebabCase from "./kebabCase";
 
 type AccountsObject = {
   [key: string]: {

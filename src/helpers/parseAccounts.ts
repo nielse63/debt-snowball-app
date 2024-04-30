@@ -30,7 +30,6 @@ const parseAccounts = (accounts: AccountItem[]) => {
     })
     .map(parseItem)
     .map((item) => {
-      console.log({ item });
       return {
         name: item.name,
         interest: parseFloat(item.interest.toFixed(2)),

@@ -3,9 +3,9 @@ import uuid from "../helpers/uuid";
 const accounts = [
   {
     name: "Visa",
-    balance: 3000,
-    interest: 14.99,
-    minPayment: 100,
+    balance: 3500,
+    interest: 20.99,
+    minPayment: 125,
   },
   {
     name: "Student Loan",

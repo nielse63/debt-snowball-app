@@ -13,6 +13,7 @@ interface AccountItem {
   balance: number;
   interest: number;
   minPayment: number;
+  key?: string;
 }
 
 interface CleanAccountItem {
@@ -49,7 +50,7 @@ interface ResultsObject {
 
 interface ErrorObject {
   message: string;
-  source: string;
+  source?: string;
   id: string;
 }
 

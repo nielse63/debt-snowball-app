@@ -5,3 +5,11 @@
 .card-body > *:last-child {
   margin-bottom: 0;
 }
+
+.card-action-button:only-child {
+  width: 100%;
+}
+
+.results-item + .results-item {
+  margin-top: 1rem;
+}

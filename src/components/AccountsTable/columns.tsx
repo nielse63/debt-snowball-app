@@ -1,60 +1,74 @@
-import { DeleteOutlined } from "@ant-design/icons";
 import type { TableProps } from "antd";
-import { Button } from "antd";
-
-// const columns = [
-//   { columnKey: "name", label: "Name" },
-//   { columnKey: "balance", label: "Current Balance" },
-//   { columnKey: "interest", label: "Interest Rate" },
-//   { columnKey: "minPayment", label: "Min. Monthly Payment" },
-//   { columnKey: "action", label: "" },
-// ];
-
-// export default columns;
+import DeleteButton from "./DeleteButton";
+import NumberInput from "./NumberInput";
+import TextInput from "./TextInput";
 
 const columns: TableProps<AccountItem>["columns"] = [
   {
     title: "Name",
     dataIndex: "name",
     key: "name",
-    // render: (text) => <a>{text}</a>,
+    render: (value, record) => {
+      return <TextInput defaultValue={value} record={record} column="name" />;
+    },
   },
   {
     title: "Current Balance",
     dataIndex: "balance",
     key: "balance",
-  },
-  {
-    title: "Interest Rate",
-    dataIndex: "interest",
-    key: "interest",
+    render: (value, record) => {
+      return (
+        <NumberInput
+          defaultValue={value}
+          record={record}
+          column="balance"
+          options={{
+            addonBefore: "$",
+          }}
+        />
+      );
+    },
   },
   {
     title: "Min. Monthly Payment",
     key: "minPayment",
     dataIndex: "minPayment",
-    // render: (_, { tags }) => (
-    //   <>
-    //     {tags.map((tag) => {
-    //       let color = tag.length > 5 ? "geekblue" : "green";
-    //       if (tag === "loser") {
-    //         color = "volcano";
-    //       }
-    //       return (
-    //         <Tag color={color} key={tag}>
-    //           {tag.toUpperCase()}
-    //         </Tag>
-    //       );
-    //     })}
-    //   </>
-    // ),
+    render: (value, record) => {
+      return (
+        <NumberInput
+          defaultValue={value}
+          record={record}
+          column="minPayment"
+          options={{
+            addonBefore: "$",
+          }}
+        />
+      );
+    },
   },
   {
-    title: "",
+    title: "Interest Rate",
+    dataIndex: "interest",
+    key: "interest",
+    render: (value, record) => {
+      return (
+        <NumberInput
+          defaultValue={value}
+          record={record}
+          column="interest"
+          options={{
+            addonAfter: "%",
+          }}
+        />
+      );
+    },
+  },
+  {
+    title: "Actions",
     key: "action",
-    render: (_, record) => {
-      console.log({ _, record });
-      return <Button icon={<DeleteOutlined />} />;
+    render: (record) => {
+      const title = `Delete account ${record.name}`;
+      return <DeleteButton title={title} id={record.key} />;
     },
   },
 ];

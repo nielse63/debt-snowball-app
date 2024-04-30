@@ -1,3 +1,7 @@
+@import "normalize.css";
+@import "sanitize.css";
+@import "normalize.css/opinionated.css";
+
 body {
   font-family: Inter var, ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -22,4 +26,8 @@ p {
 
 p:last-child {
   margin-bottom: 0;
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }

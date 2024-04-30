@@ -1,5 +1,13 @@
 {
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "package-lock.json": true,
+    "docs": true,
+    "build": true
   }
 }

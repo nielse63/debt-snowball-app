@@ -17,7 +17,7 @@ const state: State = {
   accounts,
   results,
   dateEnd,
-  errors: [],
+  errors: [] as ErrorObject[],
   totalInterest,
   interestSaved: minPaymentResults.totalInterestPaid - totalInterest,
 };
