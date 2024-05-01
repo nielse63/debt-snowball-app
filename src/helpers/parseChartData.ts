@@ -1,8 +1,7 @@
 import { addMonths } from "date-fns";
-import { AccountObject } from "node-debt-snowball";
 import kebabCase from "./kebabCase";
 
-type AccountsObject = {
+export type ParsedOutputObject = {
   [key: string]: {
     id: string;
     label: string;
@@ -13,10 +12,10 @@ type AccountsObject = {
 const parseChartData = (data: any[]) => {
   const dateNow = new Date();
   const xAxisData = [dateNow];
-  const accounts: AccountsObject = {};
+  const accounts: ParsedOutputObject = {};
   data.forEach((item, index) => {
     if (index === 0) {
-      item.accounts.forEach((account: AccountObject) => {
+      item.accounts.forEach((account: PaymentObject) => {
         if (!accounts[account.name]) {
           accounts[account.name] = {
             id: kebabCase(account.name),
@@ -29,7 +28,7 @@ const parseChartData = (data: any[]) => {
     xAxisData.push(addMonths(dateNow, index));
 
     // add item to series
-    item.accounts.forEach((account: AccountObject) => {
+    item.accounts.forEach((account: PaymentObject) => {
       accounts[account.name].data.push(account.balanceEnd);
     });
   });

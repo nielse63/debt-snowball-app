@@ -39,9 +39,9 @@ interface PaymentObject {
   accruedInterest: number;
   additionalPayment: number;
   balanceEnd: number;
+  balanceStart: number;
   name: string;
   paymentAmount: number;
-  balanceStart: number;
   [key: string]: any;
 }
 
@@ -71,4 +71,11 @@ interface ComponentProps {
   childrenElement: React.JSX.Element; // A single React element
   style?: React.CSSProperties; // to pass through style props
   onChange?: React.FormEventHandler<HTMLInputElement>; // form events! the generic parameter is the type of event.target
+}
+
+interface AccountObject {
+  name: string;
+  balance: number;
+  interest: number;
+  minPayment: number;
 }

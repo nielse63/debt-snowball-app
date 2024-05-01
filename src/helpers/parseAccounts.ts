@@ -1,6 +1,6 @@
 import isNumeric from "./isNumeric";
 
-const parseItem = (item: AccountItem) => {
+export const parseItem = (item: AccountItem) => {
   return Object.entries(item).reduce(
     (acc, [key, value]) => {
       if (!isNumeric(value)) {
