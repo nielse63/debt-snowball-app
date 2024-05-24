@@ -9,7 +9,7 @@ const accounts = [
   },
   {
     name: "Student Loan",
-    balance: 5000,
+    balance: 3000,
     interest: 4.75,
     minPayment: 150,
   },

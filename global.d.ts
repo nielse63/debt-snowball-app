@@ -64,6 +64,7 @@ interface State {
   errors: ErrorObject[];
   totalInterest: number;
   interestSaved: number;
+  strategy: string;
 }
 
 interface ComponentProps {

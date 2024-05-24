@@ -5,7 +5,11 @@ const accountDeleted = (state: State, action: Action) => {
   const { key } = action.payload;
   const accounts = state.accounts.filter((account) => account.key !== key);
   const parsedAccounts = parseAccounts(accounts);
-  const snowballResults = snowball(parsedAccounts, state.additionalPayment);
+  const snowballResults = snowball(
+    parsedAccounts,
+    state.additionalPayment,
+    state.strategy
+  );
   const results = snowballResults.payments;
   return {
     ...state,

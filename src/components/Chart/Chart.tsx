@@ -21,6 +21,19 @@ type IdsObject = {
   [key: string]: string;
 };
 
+const SERIES_COLORS = [
+  "#2caffe",
+  "#544fc5",
+  "#00e272",
+  "#fe6a35",
+  "#6b8abc",
+  "#d568fb",
+  "#2ee0ca",
+  "#fa4b42",
+  "#feb56a",
+  "#91e8e1",
+];
+
 const addMonthsAndFormat = (months: number): number => {
   const d = new Date();
   const month = getMonth(d);
@@ -68,6 +81,9 @@ const createSeriesArray = (results: ResultsObject[]): SeriesOptionsType[] => {
 const createChartOptions = (
   series: SeriesOptionsType[]
 ): Highcharts.Options => {
+  const colors = series.map((s, i) => {
+    return SERIES_COLORS[i % SERIES_COLORS.length];
+  });
   const options: Highcharts.Options = {
     chart: {
       type: "areaspline",
@@ -114,6 +130,10 @@ const createChartOptions = (
       },
     },
     series,
+    colors,
+    accessibility: {
+      description: "This chart shows the balance of accounts over time.",
+    },
   };
   return options;
 };

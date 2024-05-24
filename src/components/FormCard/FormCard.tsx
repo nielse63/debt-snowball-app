@@ -1,4 +1,4 @@
-import { Card, InputNumber } from "antd";
+import { Card, InputNumber, Select } from "antd";
 import { useContext } from "react";
 import { actionTypes } from "../../helpers/constants";
 import formatCurrency from "../../helpers/formatCurrency";
@@ -12,23 +12,30 @@ import "./styles.css";
 
 function FormCard() {
   const dispatch = useContext(AccountsContextDispatcher);
-  const { accounts, additionalPayment } = useContext(AccountsContext);
+  const { additionalPayment } = useContext(AccountsContext);
 
-  const totalMinPayment = accounts.reduce(
-    (acc: number, account: AccountItem) => {
-      return acc + account.minPayment;
-    },
-    0
-  );
+  // const totalMinPayment = accounts.reduce(
+  //   (acc: number, account: AccountItem) => {
+  //     return acc + account.minPayment;
+  //   },
+  //   0
+  // );
+
+  const handleChange = (value: string) => {
+    dispatch({
+      type: actionTypes.SET_STRATEGY,
+      payload: value,
+    });
+  };
 
   return (
     <div className="form-card">
-      <Card title="Additional Payment">
+      <Card title="Repayment">
         <div className="card-body text-sm">
           <ResultsItem
-            title="Min. Payment Total"
-            value={formatCurrency(totalMinPayment)}
-            tooltip="The sum of all minimum payment amounts"
+            title="Additional Payment"
+            // value={formatCurrency(totalMinPayment)}
+            tooltip="The amount you can pay in addition to the minimum payment"
             className="mb-4"
           />
           <InputNumber
@@ -52,6 +59,20 @@ function FormCard() {
                 payload: value,
               });
             }}
+          />
+          <ResultsItem
+            title="Repayment Strategy"
+            tooltip="The approach to paying off debt"
+            className="mb-4 mt-4"
+          />
+          <Select
+            defaultValue="avalanche"
+            onChange={handleChange}
+            style={{ width: "100%" }}
+            options={[
+              { value: "avalanche", label: "Avalanche" },
+              { value: "snowball", label: "Snowball" },
+            ]}
           />
         </div>
       </Card>

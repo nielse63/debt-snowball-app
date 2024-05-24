@@ -6,6 +6,7 @@ import calculated from "./reducers/calculated";
 import errorAdded from "./reducers/errorAdded";
 import errorDismissed from "./reducers/errorDismissed";
 import minPaymentSet from "./reducers/minPaymentSet";
+import strategySet from "./reducers/strategySet";
 
 const reducers = (state: State, action: Action) => {
   switch (action.type) {
@@ -23,6 +24,8 @@ const reducers = (state: State, action: Action) => {
       return errorAdded(state, action);
     case actionTypes.DISMISS_ERROR:
       return errorDismissed(state, action);
+    case actionTypes.SET_STRATEGY:
+      return strategySet(state, action);
   }
 
   return { ...state };

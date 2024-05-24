@@ -13,6 +13,7 @@ export const actionTypes = {
   ADD_ERROR: "ADD_ERROR",
   DISMISS_ERROR: "DISMISS_ERROR",
   CALCULATE: "CALCULATE",
+  SET_STRATEGY: "SET_STRATEGY",
 };
 
 export const errorIds = {

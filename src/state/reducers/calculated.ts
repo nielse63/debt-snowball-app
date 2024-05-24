@@ -15,7 +15,7 @@ export interface SnowballResultsObject {
 }
 
 const calculated = (state: State) => {
-  const { accounts, additionalPayment } = state;
+  const { accounts, additionalPayment, strategy } = state;
   const parsedAccounts = parseAccounts(accounts);
   let snowballResults: SnowballResultsObject = {
     payments: [],
@@ -23,7 +23,7 @@ const calculated = (state: State) => {
     totalInterestPaid: 0,
   };
   try {
-    snowballResults = snowball(parsedAccounts, additionalPayment);
+    snowballResults = snowball(parsedAccounts, additionalPayment, strategy);
   } catch (error: any) {
     return errorAdded(state, {
       type: actionTypes.ADD_ERROR,
@@ -35,7 +35,7 @@ const calculated = (state: State) => {
   }
   const results = snowballResults.payments;
   const dateEnd = addMonths(new Date(), snowballResults.totalPayments - 1);
-  const minPaymentResults = snowball(parsedAccounts, 0);
+  const minPaymentResults = snowball(parsedAccounts, 0, strategy);
   const interestSaved =
     minPaymentResults.totalInterestPaid - snowballResults.totalInterestPaid;
 

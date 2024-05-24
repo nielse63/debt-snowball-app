@@ -27,7 +27,7 @@
     "highcharts": "^11.4.3",
     "highcharts-react-official": "^3.2.1",
     "lodash": "^4.17.21",
-    "node-debt-snowball": "^2.3.4",
+    "node-debt-snowball": "^2.5.0",
     "postcss-normalize": "^10.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -47,7 +47,7 @@
     ],
     "rules": {
       "no-console": [
-        "error",
+        "warn",
         {
           "allow": [
             "warn",

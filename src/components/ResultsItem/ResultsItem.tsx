@@ -7,7 +7,7 @@ import "./ResultsItem.css";
 export type ResultsItemProps = {
   title: string;
   tooltip: string;
-  value: string;
+  value?: string;
   style?: {
     [key: string]: string | number;
   };
@@ -26,7 +26,7 @@ function ResultsItem(props: ResultsItemProps) {
           <InfoCircleOutlined />
         </Tooltip>
       </div>
-      <Tag color="green">{value}</Tag>
+      {value && <Tag color="green">{value}</Tag>}
     </Flex>
   );
 }
