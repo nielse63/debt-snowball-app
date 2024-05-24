@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "./static/css/main.829775f4.css",
-    "main.js": "./static/js/main.00b3d59d.js",
-    "static/js/453.cd98a348.chunk.js": "./static/js/453.cd98a348.chunk.js",
+    "main.js": "./static/js/main.a104856e.js",
+    "static/js/488.b961175e.chunk.js": "./static/js/488.b961175e.chunk.js",
     "static/media/logo.svg": "./static/media/logo.bb59f9684cf85510ad7bb3eaa80b777c.svg",
     "index.html": "./index.html",
     "static/media/github.svg": "./static/media/github.136a8d4e40acd346361e741f3d0873b3.svg",
     "static/media/investopedia.svg": "./static/media/investopedia.5709de430c73e85d6960710569a28211.svg",
     "main.829775f4.css.map": "./static/css/main.829775f4.css.map",
-    "main.00b3d59d.js.map": "./static/js/main.00b3d59d.js.map",
-    "453.cd98a348.chunk.js.map": "./static/js/453.cd98a348.chunk.js.map"
+    "main.a104856e.js.map": "./static/js/main.a104856e.js.map",
+    "488.b961175e.chunk.js.map": "./static/js/488.b961175e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.829775f4.css",
-    "static/js/main.00b3d59d.js"
+    "static/js/main.a104856e.js"
   ]
 }
